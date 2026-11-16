@@ -27,12 +27,21 @@ const limiter = rateLimit({
 // middlewares
 app.use(json());
 app.use(cookieParse());
-app.use(cors({
+const corsOptions = {
     origin: ['http://localhost:5173', 'https://mimandao.onrender.com'],
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+};
+
+// 1. CORS siempre de primero
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Responde explícitamente a todos los preflights
+
+// 2. Resto de middlewares
+app.use(json());
+app.use(cookieParse());
+
 app.use('/images', express.static(path.join('./src', 'images')));
 app.use(limiter)
 
