@@ -8,6 +8,7 @@ const pool: Pool = new Pool({
   password: process.env.password,
   port: 5432,
   user: process.env.user,
+  ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
 });
 
 pool.connect()
