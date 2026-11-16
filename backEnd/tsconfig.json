@@ -14,8 +14,7 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowImportingTsExtensions": true,
-    "emitDeclarationOnly": true,
+    "rewriteRelativeImportExtensions": true,
     "paths": {
       "@middle/*": [ "./src/middlewares/*" ],
       "@utils/*": ["./src/utils/*"],
