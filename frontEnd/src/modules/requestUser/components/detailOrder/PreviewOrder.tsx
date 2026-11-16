@@ -12,7 +12,6 @@ import {
     faMagnifyingGlass
 } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'motion/react'
-import avocado from '@src/assets/avocado.jpg';
 
 // data
 const STATES = [
@@ -143,7 +142,7 @@ export default function OrderPreview({ currentOrder, setCurrentOrder }:
                         transition={{ ...spring, delay: 0.1 + Math.min(i, 6) * 0.05 }}
                         className="flex items-start gap-3 pb-4 border-b border-slate-100 last:border-b-0 last:pb-0"
                     >
-                        <img src={avocado} alt={it.name} className="size-20 shrink-0 rounded-xl object-cover" />
+                        <img src={it.images} alt={it.name} className="size-20 shrink-0 rounded-xl object-cover" />
                         <div className="flex min-w-0 flex-1 flex-col gap-1">
                             <div className="flex items-start justify-between gap-2">
                                 <h4 className="text-sm font-semibold">{it.name}</h4>

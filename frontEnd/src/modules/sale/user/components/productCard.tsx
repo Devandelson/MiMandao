@@ -1,7 +1,6 @@
 // -------- resources
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
-import ImgProduct from '@src/assets/avocado.jpg';
 import { motion, AnimatePresence } from 'motion/react'
 import type productsProps from '../types/product';
 
@@ -53,7 +52,7 @@ export default function ProductCard(
             </AnimatePresence>
 
             <section className="flex items-center gap-4 flex-wrap">
-                <img src={ImgProduct} alt="Imagen del producto" className="size-28 shrink-0 object-cover rounded-xl" />
+                <img src={infoP.images} alt="Imagen del producto" className="size-28 shrink-0 object-cover rounded-xl" />
                 <span className="flex min-w-0 flex-col gap-1.5">
                     <h3 className="text-base font-semibold leading-snug">{infoP.name}</h3>
                     <p className="inline-flex w-fit items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-0.5 text-xs text-slate-600">

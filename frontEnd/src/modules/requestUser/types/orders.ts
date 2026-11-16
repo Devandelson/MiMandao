@@ -19,7 +19,7 @@ export interface orderProps {
         "name": string,
         "price": number,
         "stock": number,
-        "images": Array<string>,
+        "images": string,
         "category": string,
         "id_product": number
     }[]
