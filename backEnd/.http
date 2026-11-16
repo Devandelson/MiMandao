@@ -1,0 +1,23 @@
+http://localhost:3000/
+
+### Check account (login)
+POST http://localhost:3000/api/login/check
+Content-Type: application/json
+
+{
+  "email": "carlos.mendoza@example.com",
+  "password": "admin1234"
+}
+
+### Refresh token (login)
+GET http://localhost:3000/api/login/refresh
+Content-Type: application/json
+
+### Message
+GET http://localhost:3000/api/message/3
+Content-Type: application/json
+
+### Request user.
+GET http://localhost:3000/api/order/userOrders
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjozLCJuYW1lIjoiQ2FybG9zIE1lbmRvemEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3OTQzNjAyOTYsImV4cCI6MTc5NDQ0NjY5Nn0.Rf9tWeI9-tdJ3qptcWl3PrrPpe77KohrWXud8bW_aUU

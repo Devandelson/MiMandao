@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap");
+
+/* Import this AFTER the @tailwind directives.
+   Everything is scoped under .mandao, so wrap the page in <div className="mandao">. */
+
+/* ---------- tokens (scoped to .mandao instead of :root) ---------- */
+.mandao {
+  --bg: #F3F5FC;
+  --surface: #FFFFFF;
+  --ink: #101B3D;
+  --muted: #4D5885;
+  --line: #DCE2F3;
+  --brand: #2457FF;
+  --on-brand: #FFFFFF;
+  --brand-soft: #E3EAFF;
+  --sun: #FFC53D;
+  --hero-a: #1430AE;
+  --hero-b: #2A5CFF;
+  --tint-mint: #D3F3E4;
+  --tint-sun: #FFEEBF;
+  --tint-blue: #DCE5FF;
+  --tint-coral: #FFDFD7;
+  --tint-violet: #E8DCFF;
+  --map-land: #E7ECFB;
+  --map-zone: #C9D5F7;
+  --map-road: #FFFFFF;
+  --map-sea: #BCD1FF;
+  --footer: #0E1737;
+  --focus: #101B3D;
+  --glass-bg: rgba(255,255,255,.5);
+  --glass-bg-strong: rgba(255,255,255,.72);
+  --glass-border: rgba(255,255,255,.7);
+  --glass-shadow: 0 10px 34px -12px rgba(16,27,61,.38);
+  --ease: cubic-bezier(.22,1,.36,1);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .mandao {
+    --bg: #0B1020; --surface: #151D38; --ink: #EEF1FF; --muted: #A3ACD3; --line: #263156;
+    --brand: #6B8CFF; --on-brand: #0B1020; --brand-soft: #1D2A55; --sun: #FFC53D;
+    --hero-a: #0E1C66; --hero-b: #1D3FB5;
+    --tint-mint: #0F3A2C; --tint-sun: #3B300A; --tint-blue: #172C6B; --tint-coral: #43201B; --tint-violet: #2E1E59;
+    --map-land: #0F1730; --map-zone: #22305C; --map-road: #17213F; --map-sea: #16275A;
+    --footer: #070B1A; --focus: #FFC53D;
+    --glass-bg: rgba(21,29,56,.5); --glass-bg-strong: rgba(21,29,56,.76); --glass-border: rgba(255,255,255,.14);
+    --glass-shadow: 0 10px 34px -12px rgba(0,0,0,.6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] .mandao {
+  --bg: #0B1020; --surface: #151D38; --ink: #EEF1FF; --muted: #A3ACD3; --line: #263156;
+  --brand: #6B8CFF; --on-brand: #0B1020; --brand-soft: #1D2A55; --sun: #FFC53D;
+  --hero-a: #0E1C66; --hero-b: #1D3FB5;
+  --tint-mint: #0F3A2C; --tint-sun: #3B300A; --tint-blue: #172C6B; --tint-coral: #43201B; --tint-violet: #2E1E59;
+  --map-land: #0F1730; --map-zone: #22305C; --map-road: #17213F; --map-sea: #16275A;
+  --footer: #070B1A; --focus: #FFC53D;
+  --glass-bg: rgba(21,29,56,.5); --glass-bg-strong: rgba(21,29,56,.76); --glass-border: rgba(255,255,255,.14);
+  --glass-shadow: 0 10px 34px -12px rgba(0,0,0,.6);
+  color-scheme: dark;
+}
+
+/* ---------- base (was html/body, now the .mandao root) ----------
+   html { scroll-behavior } and scroll-padding-top are set from the component (see useScrollSuave). */
+.mandao {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Figtree, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip; /* clip, not hidden: hidden would break position: sticky on the header */
+}
+.mandao::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 50; background: var(--bg);
+}
+:where(.mandao) img { max-width: 100%; } /* :where keeps specificity at 0 so max-w-none still wins */
+.mandao [hidden]:not([hidden="until-found" i]) { display: none !important; }
+
+.mandao .wrap {
+  width: 100%; max-width: 1200px; margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.mandao section[id] { scroll-margin-top: 96px; }
+.mandao :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.mandao .hero-bg :focus-visible { outline-color: #fff; }
+
+/* ---------- glass ---------- */
+.mandao .glass {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(22px) saturate(1.8);
+  backdrop-filter: blur(22px) saturate(1.8);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.35);
+  transition: background-color .35s var(--ease), box-shadow .35s var(--ease), padding .35s var(--ease);
+}
+.mandao .glass-strong { background: var(--glass-bg-strong); }
+.mandao .nav-link { color: var(--muted); transition: color .2s, background-color .25s var(--ease), transform .25s var(--ease); }
+.mandao .nav-link:hover { color: var(--ink); background: var(--brand-soft); transform: translateY(-1px); }
+.mandao .nav-on { color: var(--ink); background: var(--brand-soft); }
+.mandao .menu-in { animation: mandao-menuIn .35s var(--ease) both; transform-origin: top center; }
+
+/* ---------- buttons ---------- */
+.mandao .btn {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  border-radius: 999px; padding: .8rem 1.5rem; font-weight: 600; font-size: 1rem; line-height: 1.2;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), background-color .2s;
+}
+.mandao .btn::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; transform: translateX(-120%) skewX(-20deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
+}
+.mandao .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -12px rgba(16,27,61,.5); }
+.mandao .btn:hover::after { transform: translateX(120%) skewX(-20deg); transition: transform .7s var(--ease); }
+.mandao .btn:active { transform: translateY(0) scale(.97); }
+.mandao .btn-primary { background: var(--brand); color: var(--on-brand); }
+.mandao .btn-sun { background: var(--sun); color: #101B3D; }
+.mandao .btn-outline-light { border: 2px solid rgba(255,255,255,.7); color: #fff; }
+.mandao .btn-outline-light:hover { background: rgba(255,255,255,.14); }
+.mandao .arrow-btn { transition: transform .35s var(--ease); }
+.mandao .arrow-btn:hover { transform: scale(1.1); }
+.mandao .arrow-btn:active { transform: scale(.92); }
+.mandao .chip { transition: background-color .25s, color .25s, transform .3s var(--ease); }
+.mandao .chip:hover { transform: translateY(-2px); }
+.mandao .social { transition: background-color .25s, transform .35s var(--ease); }
+.mandao .social:hover { background: rgba(255,255,255,.16); transform: translateY(-3px) rotate(-6deg); }
+.mandao .tint-shift { transition: background-color .6s var(--ease); }
+
+/* ---------- hero: parallax + load sequence ---------- */
+.mandao .hero-bg { background: linear-gradient(165deg, var(--hero-a), var(--hero-b)); }
+.mandao .drift { animation: mandao-drift 14s ease-in-out infinite alternate; }
+.mandao .drift-b { animation: mandao-drift 18s ease-in-out infinite alternate-reverse; }
+.mandao .float { animation: mandao-float 6s ease-in-out 2s infinite; }
+
+.mandao .word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .14em; margin-bottom: -.14em; }
+.mandao .word-i { display: inline-block; animation: mandao-wordUp .95s var(--ease) both; animation-delay: calc(var(--i) * 85ms + 120ms); }
+.mandao .rise-in { animation: mandao-riseIn .9s var(--ease) both; animation-delay: var(--d, 0ms); }
+.mandao .row-in { animation: mandao-rowIn .7s var(--ease) both; animation-delay: var(--d, 0ms); }
+.mandao .phone-enter { animation: mandao-phoneUp 1.1s var(--ease) both; animation-delay: var(--d, 0ms); }
+
+/* ---------- scroll reveal (added by script only to elements below the fold) ---------- */
+.mandao .rv { opacity: 0; transform: translateY(36px) scale(.985); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: var(--rd, 0ms); }
+.mandao .rv.in { opacity: 1; transform: none; }
+
+/* ---------- catalog ---------- */
+.mandao .slide-r { animation: mandao-slideR .6s var(--ease) both; }
+.mandao .slide-l { animation: mandao-slideL .6s var(--ease) both; }
+.mandao .art-pop { animation: mandao-artPop .8s var(--ease) both; }
+
+/* ---------- benefits ---------- */
+.mandao .lift { transition: transform .45s var(--ease), box-shadow .45s var(--ease); }
+.mandao .lift:hover { transform: translateY(-8px) rotate(-.5deg); box-shadow: 0 28px 44px -26px rgba(16,27,61,.5); }
+.mandao .lift:hover .wiggle { animation: mandao-wiggle .7s var(--ease); }
+
+/* ---------- map ---------- */
+.mandao .map-frame { transition: transform .6s var(--ease), box-shadow .6s var(--ease); }
+.mandao .map-frame:hover { transform: translateY(-4px); box-shadow: 0 30px 50px -28px rgba(16,27,61,.5); }
+.mandao .ping { transform-box: fill-box; transform-origin: center; animation: mandao-ping 2.4s ease-out infinite; }
+.mandao .ping-b { animation-delay: 1.2s; }
+
+/* ---------- keyframes (prefixed so they can't collide with Tailwind's ping, etc.) ---------- */
+@keyframes mandao-wordUp { from { transform: translateY(110%); } to { transform: none; } }
+@keyframes mandao-riseIn { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes mandao-rowIn { from { opacity: 0; transform: translateX(34px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes mandao-phoneUp { from { opacity: 0; transform: translateY(120px) rotate(3deg) scale(.94); } 60% { opacity: 1; } to { opacity: 1; transform: none; } }
+@keyframes mandao-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes mandao-drift { from { margin-left: -14px; } to { margin-left: 22px; } }
+@keyframes mandao-slideR { from { opacity: 0; transform: translateX(56px); } to { opacity: 1; transform: none; } }
+@keyframes mandao-slideL { from { opacity: 0; transform: translateX(-56px); } to { opacity: 1; transform: none; } }
+@keyframes mandao-artPop { 0% { transform: translateY(34px) scale(.88) rotate(-5deg); } 60% { transform: translateY(-6px) scale(1.03) rotate(1.5deg); } 100% { transform: none; } }
+@keyframes mandao-wiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-12deg) scale(1.08); } 60% { transform: rotate(8deg) scale(1.08); } }
+@keyframes mandao-menuIn { from { opacity: 0; transform: translateY(-8px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes mandao-ping { 0% { transform: scale(.35); opacity: .6; } 100% { transform: scale(2.4); opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .mandao *, .mandao *::before, .mandao *::after { animation: none !important; transition-duration: .01ms !important; }
+  .mandao .rv { opacity: 1; transform: none; }
+}

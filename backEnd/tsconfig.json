@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./build",
+    "module": "nodenext",
+    "target": "esnext",
+    "types": [],
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    // Recommended Options
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "emitDeclarationOnly": true,
+    "paths": {
+      "@middle/*": [ "./src/middlewares/*" ],
+      "@utils/*": ["./src/utils/*"],
+      "@src/*": ["./src/*"],
+    }
+  }
+}
