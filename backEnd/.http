@@ -1,21 +1,20 @@
 http://localhost:3000/
 
 ### Check account (login)
-POST http://localhost:3000/api/login/check
+POST https://mimandaoback.onrender.com/api/login/check
 Content-Type: application/json
 
 {
-  "email": "carlos.mendoza@example.com",
-  "password": "admin1234"
+  "email": "carlos.mendoza@gmail.com",
+  "password": "1212"
 }
 
 ### Refresh token (login)
-GET http://localhost:3000/api/login/refresh
+GET  https://mimandaoback.onrender.com/api/login/refresh
 Content-Type: application/json
 
 ### Message
-GET http://localhost:3000/api/message/3
-Content-Type: application/json
+GET https://mimandaoback.onrender.com
 
 ### Request user.
 GET http://localhost:3000/api/order/userOrders
