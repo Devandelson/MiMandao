@@ -21,3 +21,9 @@ Content-Type: application/json
 GET http://localhost:3000/api/order/userOrders
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjozLCJuYW1lIjoiQ2FybG9zIE1lbmRvemEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3OTQzNjAyOTYsImV4cCI6MTc5NDQ0NjY5Nn0.Rf9tWeI9-tdJ3qptcWl3PrrPpe77KohrWXud8bW_aUU
+
+### Request user.
+curl -i -X OPTIONS https://mimandaoback.onrender.com/api/login/check \
+  -H "Origin: https://mimandao.onrender.com" \
+  -H "Access-Control-Request-Method: POST" \
+  -H "Access-Control-Request-Headers: content-type"

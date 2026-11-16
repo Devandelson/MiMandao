@@ -4,6 +4,7 @@ import cookieParse from 'cookie-parser';
 import sessionProfile from './middlewares/checkToken.ts';
 import { rateLimit } from 'express-rate-limit'
 const app = express();
+app.set('trust proxy', 1);
 
 // routes
 import routerMessage from './modules/message/router.ts';
@@ -27,6 +28,7 @@ const limiter = rateLimit({
 // middlewares
 app.use(json());
 app.use(cookieParse());
+
 const corsOptions = {
     origin: ['http://localhost:5173', 'https://mimandao.onrender.com'],
     credentials: true,
@@ -34,10 +36,7 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
-// 1. CORS siempre de primero
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Responde explícitamente a todos los preflights
-
 // 2. Resto de middlewares
 app.use(json());
 app.use(cookieParse());
