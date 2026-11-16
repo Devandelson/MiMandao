@@ -1,8 +1,6 @@
 // -------- resources
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter, faMinus, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons'
-import ImgProduct from '@src/assets/avocado.jpg';
-
 const focusRing = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
 
 import type salesProps from '../salesProps.ts';
@@ -38,7 +36,7 @@ export default function Article({
     return (
         <article className="flex flex-col gap-3 pb-4 border-b border-slate-100">
             <section className="flex items-start gap-3">
-                <img src={ImgProduct} alt="Imagen del producto" className="size-20 shrink-0 rounded-xl object-cover" />
+                <img src={infoProducts.images} alt="Imagen del producto" className="size-20 shrink-0 rounded-xl object-cover" />
 
                 <span className="flex min-w-0 flex-1 flex-col gap-1">
                     <h4 className="text-sm font-semibold">{infoProducts.name}</h4>
